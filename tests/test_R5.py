@@ -1,6 +1,7 @@
-import pytest
-from library_service import add_book_to_catalog, calculate_late_fee_for_book
+from services.library_service import add_book_to_catalog, calculate_late_fee_for_book
 from database import get_book_by_isbn, insert_borrow_record
+
+import pytest
 
 def add_book(isbn: str, copies: int = 1):
     result, output = add_book_to_catalog("Wings of Fire", "King", isbn, copies)
@@ -48,3 +49,5 @@ def test_fee_invalid_book_id():
     assert fee_info["fee_amount"] == 0.00
     assert fee_info["days_overdue"] == 0
     assert "Book cannot be found" in fee_info["status"]
+
+

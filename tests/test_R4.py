@@ -1,6 +1,7 @@
 import pytest
-from library_service import add_book_to_catalog, borrow_book_by_patron, return_book_by_patron
+from services.library_service import add_book_to_catalog, borrow_book_by_patron, return_book_by_patron
 from database import get_book_by_isbn, get_book_by_id, insert_borrow_record
+
 
 def add_book(isbn: str, copies: int = 1):
     result, output = add_book_to_catalog("Geronimo Stilton", "Himself", isbn, copies)
@@ -78,3 +79,5 @@ def test_book_not_borrowed_record():
 
     assert not result
     assert "no record" in output.lower() or "not borrowed" in output.lower()
+
+

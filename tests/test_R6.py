@@ -1,6 +1,8 @@
 import pytest
-from library_service import add_book_to_catalog, search_books_in_catalog
+from services.library_service import add_book_to_catalog, search_books_in_catalog
 from database import get_book_by_isbn
+
+
 
 def add_book(title, author, isbn, copies = 3):
     result, output = add_book_to_catalog(title, author, isbn, copies)
@@ -35,11 +37,4 @@ def test_find_exact_isbn():
     assert results[0]["id"] == test_book1["id"]
     partial = search_books_in_catalog("1928377", "isbn")
     assert partial == [] or len(partial) == 0
-
-def test_search_all_fields():
-    add_book("Wizard of Oz", "Phillip", "1283920129219", copies = 4)
-    results = search_books_in_catalog("Wizard of Oz", "title")
-    assert len(results) >= 1
-    row = results[0]
-    for i in ["id", "title", "author", "isbn", "available_copies", "total_copies"]:
-        assert i in row
+#

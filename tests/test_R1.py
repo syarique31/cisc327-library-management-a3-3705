@@ -1,4 +1,4 @@
-from library_service import add_book_to_catalog
+from services.library_service import add_book_to_catalog
 
 def test_add_success():
     result, output = add_book_to_catalog("Book_Test", "Syarique Izzat", "0392818291924", 3) #this test case will check whether the book added to the catalog is successful
